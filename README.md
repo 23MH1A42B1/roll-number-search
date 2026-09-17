@@ -20,6 +20,25 @@ If you want to work locally using your own IDE, you can clone this repo and push
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
+### Environment variables
+
+Create a local `.env` file from `.env.example`:
+
+```sh
+cp .env.example .env
+```
+
+Set these values in `.env`:
+
+```env
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your-supabase-publishable-key
+```
+
+The `VITE_*` values are public browser configuration, not private API keys. Never put Supabase service-role keys or college API credentials in them. Keep `COLLEGE_PHOTO_BASE_URL`, `COLLEGE_STUDENT_API_URL`, and any private credentials in Supabase Edge Function secrets.
+
+For Vercel, add the two `VITE_*` variables under **Project Settings -> Environment Variables** for the Production environment, then redeploy. Vercel cannot read the local `.env` file because it is excluded from Git.
+
 Follow these steps:
 
 ```sh
