@@ -99,9 +99,10 @@ const StudentPhotoFinder = () => {
   useEffect(() => {
     const incrementVisitCount = async () => {
       const { data, error } = await supabase.rpc('increment_visit_count');
-      if (!error && data) {
+      if (!error && data !== null) {
         setVisitCount(data);
       } else {
+        console.error('Could not increment visit count:', error);
         // Fallback: fetch current count if increment fails
         const { data: countData } = await supabase
           .from('site_visits')
